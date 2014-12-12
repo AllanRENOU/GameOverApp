@@ -13,6 +13,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+/**
+ * @author Allan
+ *
+ */
 public class MainActivity extends Activity {
 
 	private TableLayout tableau;
@@ -20,11 +24,11 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_main);//layout.activity_main.xml définit l'interface graphique
 		
-		tableau = (TableLayout) findViewById(R.id.tableau);
+		tableau = (TableLayout) findViewById(R.id.tableau);//récupération du tableau définit dans le xml
 
-		creerSousTitre(R.raw.cocktails);
+		creerSousTitre(R.raw.cocktails);//R.raw.cocktails référence une image qui est contenu dans le dossier res/raw
 		
 		creerElement( R.raw.genkidama, "Genkidama", false);
 		creerElement( R.raw.mojo, "Mojo", false);
@@ -51,40 +55,55 @@ public class MainActivity extends Activity {
 		
 	}
 
+	/**Permet d'ajouter une nouvelle ligne 
+	 * @param r_raw L'image de la boisson. Cette image doit être dans le dossier res/raw, et est référencé grace à R.raw.nomImage
+	 * @param nom Le nom de la boisson qui sera affiché
+	 * @param coche true si la boisson a déja été testé
+	 */
 	private void creerElement(int r_raw, String nom, boolean coche){
 		
+		//création d'une imageView
 		ImageView image = new ImageView(this);
-		image.setImageResource(r_raw);
+		image.setImageResource(r_raw);//définition de l'image source
 		image.setLayoutParams(new TableRow.LayoutParams(
 				TableRow.LayoutParams.WRAP_CONTENT,
-				100));
+				100));//l'image occupera autant de place que besoin horizontalement, et 100dp verticalement
 		
+		//création d'un textView
 		TextView texte = new TextView(this);
 		texte.setLayoutParams(new TableRow.LayoutParams(
 				265,
-				TableRow.LayoutParams.WRAP_CONTENT));
-		texte.setText(nom);
-		texte.setTextColor(Color.WHITE);
-		texte.setTextSize(30);
+				TableRow.LayoutParams.WRAP_CONTENT));//il occupera 265dp de large et autant de place qu'il en a besoin verticalement(permet les retours à la ligne)
+		texte.setText(nom);//attribution du texte à écrire
+		texte.setTextColor(Color.WHITE);//définition de la couleur du texte
+		texte.setTextSize(30);//définition de la taille du texte
 		
+		//création d'une checkBox
 		CheckBox box = new CheckBox(this);
 		box.setLayoutParams(new TableRow.LayoutParams(
 				TableRow.LayoutParams.WRAP_CONTENT,
-				TableRow.LayoutParams.WRAP_CONTENT));
-		box.setChecked(coche);
+				TableRow.LayoutParams.WRAP_CONTENT));//la checkBox  occupe la place dont elle a besoin
+		box.setChecked(coche);//attribution de son été initial
 		
+		//création d'une nouvelle ligne dans le tableau
 		TableRow ligne = new TableRow(this);
 		ligne.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
-		ligne.setGravity(Gravity.CENTER);
+		ligne.setGravity(Gravity.CENTER);//Les objets seront centrés à l'intérieur
 		ligne.setPadding(0, 10, 0, 10);
 		
+		//ajout de l'image, du texte et le la checkbox à la ligne
 		ligne.addView(image);
 		ligne.addView(texte);
 		ligne.addView(box);
 		
+		//ajout de la ligne au tableau
 		tableau.addView(ligne);
 	}
 	
+	
+	/**Ajoute un image qui occupe la largeur de l'écran
+	 * @param r_raw L'image du sous-titre. Cette image doit être dans le dossier res/raw, et est référencé grace à R.raw.nomImage
+	 */
 	private void creerSousTitre(int r_raw){
 		
 		TableRow.LayoutParams params = new TableRow.LayoutParams(
@@ -105,6 +124,10 @@ public class MainActivity extends Activity {
 		ligne.addView(image);
 		tableau.addView(ligne);
 	}
+	/* (non-Javadoc)
+	 * Définit le menu qui apparaitra quand l'utilisateur utilisera la touche menu(valeur par default)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
