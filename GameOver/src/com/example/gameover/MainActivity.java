@@ -1,6 +1,8 @@
 package com.example.gameover;
 
 
+import info.androidhive.slidingmenu.R;
+
 import java.util.ArrayList;
 
 import android.os.Bundle;

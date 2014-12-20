@@ -1,5 +1,7 @@
 package com.example.gameover;
 
+import info.androidhive.slidingmenu.R;
+
 import java.util.List;
 
 import android.app.Activity;
