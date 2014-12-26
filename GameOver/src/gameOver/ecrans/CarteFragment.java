@@ -1,4 +1,6 @@
-package info.androidhive.slidingmenu;
+package gameOver.ecrans;
+
+import info.androidhive.slidingmenu.R;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -33,7 +35,7 @@ public class CarteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
  
-        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_carte, container, false);
         
         list = (ListView) rootView.findViewById(R.id.list);
 		

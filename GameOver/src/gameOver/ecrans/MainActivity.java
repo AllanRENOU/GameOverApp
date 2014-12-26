@@ -1,11 +1,15 @@
-package info.androidhive.slidingmenu;
+package gameOver.ecrans;
 
-import info.androidhive.slidingmenu.adapter.NavDrawerListAdapter;
-import info.androidhive.slidingmenu.model.NavDrawerItem;
+import info.androidhive.slidingmenu.R;
 
 import java.util.ArrayList;
 
 
+
+
+
+import ressource.menu.NavDrawerItem;
+import ressource.menu.NavDrawerListAdapter;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;

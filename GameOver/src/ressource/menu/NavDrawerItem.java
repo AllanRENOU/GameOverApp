@@ -1,4 +1,4 @@
-package info.androidhive.slidingmenu.model;
+package ressource.menu;
 
 public class NavDrawerItem {
 	
