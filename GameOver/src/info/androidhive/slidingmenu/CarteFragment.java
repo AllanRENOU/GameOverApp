@@ -1,15 +1,19 @@
 package info.androidhive.slidingmenu;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import ressource.carte.Cocktail;
 import ressource.carte.CocktailAdapter;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.TableLayout;
 
 public class CarteFragment extends Fragment {
@@ -19,15 +23,17 @@ public class CarteFragment extends Fragment {
 	private CocktailAdapter adapter;
 	public static float hauteurEcran;
 	public static float largeurEcran;
+	private Context context;
 	
-	public CarteFragment(){}
+	public CarteFragment(Context cc){
+		context = cc;
+	}
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
  
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-         
         
         list = (ListView) rootView.findViewById(R.id.list);
 		
@@ -49,7 +55,28 @@ public class CarteFragment extends Fragment {
 		adapter = new CocktailAdapter(android.R.layout.simple_list_item_1, liste, rootView.getContext());
 	    list.setAdapter(adapter);
         
-        
+	    HashSet<String> listeBoissons = new HashSet<String>();
+	    for(Cocktail cc : liste){
+	    	for(String boisson : cc.getDesc().split("\n")){
+	    		listeBoissons.add(boisson);
+	    	}
+	    	listeBoissons.add(cc.getName());
+	    }
+	    
+	    int i = 0;
+	    String[] mots = new String[listeBoissons.size()];
+	    for(String boisson : listeBoissons){
+	    	mots[i] = boisson;
+	    	i++;
+	    }
+	    
+	    MultiAutoCompleteTextView barreRecherche = (MultiAutoCompleteTextView) rootView.findViewById(R.id.barreRecherche);
+
+        //Voir si on peut intégrer les image à l'aide d'une redéfinition de la classe arrayAdapteur
+        ArrayAdapter<String> adatpteurRecherche = new ArrayAdapter<String>(context,android.R.layout.simple_dropdown_item_1line, mots);
+        barreRecherche.setAdapter(adatpteurRecherche);
+        barreRecherche.setThreshold(1);
+        barreRecherche.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer() );
         
         return rootView;
     }

@@ -169,7 +169,7 @@ public class MainActivity extends Activity {
 		Fragment fragment = null;
 		switch (position) {
 		case 0:
-			fragment = new CarteFragment();
+			fragment = new CarteFragment(this);
 			break;
 		case 1:
 			fragment = new ActuFragment();
