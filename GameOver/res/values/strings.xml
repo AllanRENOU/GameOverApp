@@ -10,6 +10,9 @@
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
         <item >Carte</item>
+        <item >Carte > Cocktails</item>
+        <item >Carte > Shooters</item>
+        <item >Carte > Recherche</item>
         <item >Actualite</item>
         <item >Plan</item>
         <item >Random pick</item>
@@ -19,6 +22,9 @@
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
         <item>@drawable/drink</item>
+        <item>@drawable/drink</item>
+        <item>@drawable/shoot</item>
+        <item>@drawable/search</item>
         <item>@drawable/event</item>
         <item>@drawable/plan</item>
         <item>@drawable/de</item>

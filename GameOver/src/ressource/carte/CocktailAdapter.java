@@ -1,8 +1,7 @@
 package ressource.carte;
 
-
 import gameOver.ecrans.MainActivity;
-import info.androidhive.slidingmenu.R;
+import gameOver.ecrans.R;
 
 import java.util.List;
 

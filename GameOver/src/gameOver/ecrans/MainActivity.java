@@ -1,13 +1,9 @@
 package gameOver.ecrans;
 
-import info.androidhive.slidingmenu.R;
 
 import java.util.ArrayList;
 
-
-
-
-
+import ressource.carte.CocktailAdapter;
 import ressource.menu.NavDrawerItem;
 import ressource.menu.NavDrawerListAdapter;
 import android.app.Activity;
@@ -20,11 +16,13 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.MultiAutoCompleteTextView;
 
 public class MainActivity extends Activity {
 	private DrawerLayout mDrawerLayout;
@@ -70,16 +68,11 @@ public class MainActivity extends Activity {
 
 		navDrawerItems = new ArrayList<NavDrawerItem>();
 
-		// adding nav drawer items to array
-		// Home
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
-		// Find People
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
-		// Photos
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-		// Communities, Will add a counter here
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
-		
+		for(int i = 0; i< navMenuTitles.length; i++){
+			
+			navDrawerItems.add(new NavDrawerItem(navMenuTitles[i], navMenuIcons.getResourceId(i, -1)));
+			
+		}
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -173,15 +166,24 @@ public class MainActivity extends Activity {
 		Fragment fragment = null;
 		switch (position) {
 		case 0:
-			fragment = new CarteFragment(this);
+			fragment = new CarteFragment(CarteFragment.TYPE_ALL);
 			break;
 		case 1:
-			fragment = new ActuFragment();
+			fragment = new CarteFragment(CarteFragment.TYPE_COCKTAILS);
 			break;
 		case 2:
-			fragment = new PlanFragment();
+			fragment = new CarteFragment(CarteFragment.TYPE_SHOOTERS);
 			break;
 		case 3:
+			fragment = new RechercheFragment(this);
+			break;
+		case 4:
+			fragment = new ActuFragment();
+			break;
+		case 5:
+			fragment = new PlanFragment();
+			break;
+		case 6:
 			fragment = new RandomFragment();
 			break;
 
@@ -205,6 +207,7 @@ public class MainActivity extends Activity {
 		}
 	}
 
+	
 	@Override
 	public void setTitle(CharSequence title) {
 		mTitle = title;
@@ -230,4 +233,14 @@ public class MainActivity extends Activity {
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+        	System.out.println("fleche retour");
+        
+        }
+        return false;
+    }
+ 
+	
 }

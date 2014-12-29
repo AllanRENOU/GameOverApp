@@ -29,6 +29,5 @@ public class Cocktail {
 	public String getDesc() {
 		return desc;
 	}
-	
 
 }

@@ -1,6 +1,5 @@
 package gameOver.ecrans;
 
-import info.androidhive.slidingmenu.R;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;

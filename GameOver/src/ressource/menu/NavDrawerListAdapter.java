@@ -1,6 +1,6 @@
 package ressource.menu;
 
-import info.androidhive.slidingmenu.R;
+import gameOver.ecrans.R;
 
 import java.util.ArrayList;
 
@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class NavDrawerListAdapter extends BaseAdapter {
@@ -52,6 +53,23 @@ public class NavDrawerListAdapter extends BaseAdapter {
          
         imgIcon.setImageResource(navDrawerItems.get(position).getIcon());        
         txtTitle.setText(navDrawerItems.get(position).getTitle());
+        
+        //Si c'est une sous catégorie
+        if(txtTitle.getText().toString().contains(">")){
+        	String texte = txtTitle.getText().toString();
+        	txtTitle.setText(texte.substring(texte.lastIndexOf(">")+2));
+        	txtTitle.setTextSize(15);
+
+        	RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(25, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        	lp.setMargins(48, 0, 12, 0);
+        	imgIcon.setLayoutParams(lp);
+        	
+        	imgIcon.setScaleX(0.8f);
+        	imgIcon.setScaleY(0.8f);
+        	
+        	
+        }
+        
         
         // displaying count
         // check whether it set visible or not
